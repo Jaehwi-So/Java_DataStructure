@@ -1,4 +1,4 @@
-package j01_Recursive;
+package j01_recursive;
 
 public class C04_HanoiTower {
 
