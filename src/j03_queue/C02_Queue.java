@@ -225,6 +225,7 @@ public class C02_Queue {
         System.out.println("Enqueue : " + 1);
         queue.enqueue(1);
         queue.printIndex();
+
     }
 
 }

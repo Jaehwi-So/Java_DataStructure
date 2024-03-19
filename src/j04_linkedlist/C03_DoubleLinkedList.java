@@ -42,7 +42,7 @@ class MyDoubleLinkedList<E> {
 
         if (isEmpty()) {
             this.head = node;
-            this.tail = node;f
+            this.tail = node;
         }
         else {
             this.tail.next = node;
