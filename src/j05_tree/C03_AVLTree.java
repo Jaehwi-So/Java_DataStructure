@@ -137,7 +137,7 @@ class AVLTree<Key extends Comparable<Key>, Value>{
             return 0;
         }
         else{
-            return 1 + Math.max(getHeight(n.left), getHeight(n.right));
+            return n.getHeight();
         }
     }
 
@@ -211,7 +211,7 @@ class AVLTree<Key extends Comparable<Key>, Value>{
             n.setRight(insert(k, v, n.getRight()));
         }
 
-        n.height = Math.max(height(n.left), height(n.right)) + 1;
+        n.height = Math.max(getHeight(n.left), getHeight(n.right)) + 1;
         return balance(n);
     }
 
@@ -253,7 +253,7 @@ class AVLTree<Key extends Comparable<Key>, Value>{
             return n.getRight(); //Left 존재하지 않으면 최소값
         }
         n.setLeft(deleteMin(n.getLeft())); //최소값 나올 때 까지 Left로 이동
-        n.height = Math.max(height(n.left), height(n.right)) + 1;
+        n.height = Math.max(getHeight(n.left), getHeight(n.right)) + 1;
         return balance(n);
     }
 
@@ -288,21 +288,17 @@ class AVLTree<Key extends Comparable<Key>, Value>{
             }
         }
 
-        n.height = Math.max(height(n.left), height(n.right)) + 1;
+        n.height = Math.max(getHeight(n.left), getHeight(n.right)) + 1;
         return balance(n);
     }
 
     //왼쪽 서브트리와 오른쪽 서브트리의 높이 차이 반환
     private int bf(AVLNode n){
-        return height(n.left) - height(n.right);
+        return getHeight(n.left) - getHeight(n.right);
     }
 
-    private int height(AVLNode n){
-        if(n == null){
-            return 0;
-        }
-        return n.getHeight();
-    }
+
+
 
 
     private AVLNode balance(AVLNode n){
@@ -332,8 +328,8 @@ class AVLTree<Key extends Comparable<Key>, Value>{
         pivot.left = n;     // 노드 N : 노드 X의 왼쪽 자식노드로 변경
 
         // 높이 업데이트
-        n.height = Math.max(height(n.left), height(n.right)) + 1;
-        pivot.height = Math.max(height(pivot.left), height(pivot.right)) + 1;
+        n.height = Math.max(getHeight(n.left), getHeight(n.right)) + 1;
+        pivot.height = Math.max(getHeight(pivot.left), getHeight(pivot.right)) + 1;
         return pivot;
     }
 
@@ -344,8 +340,8 @@ class AVLTree<Key extends Comparable<Key>, Value>{
         pivot.right = n; // 노드 N : 노드 X의 오른쪽 자식노드로 변경
 
         // 높이 업데이트
-        n.height = Math.max(height(n.left), height(n.right)) + 1;
-        pivot.height = Math.max(height(pivot.left), height(pivot.right)) + 1;
+        n.height = Math.max(getHeight(n.left), getHeight(n.right)) + 1;
+        pivot.height = Math.max(getHeight(pivot.left), getHeight(pivot.right)) + 1;
         return pivot;
     }
 }
